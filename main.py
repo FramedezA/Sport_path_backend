@@ -13,15 +13,23 @@ def start_server():
         #server_address = (get_ip(), какой-то порт)
         server.bind(('localhost', 2000))
         print('Working...')
-        server.listen(5)
+        server.listen(100)
         while True:
             client_socket, address = server.accept()
             data = client_socket.recv(1024).decode('utf-8')
             HDRS = 'HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=utf-8\r\n\r\n'
-            if data == 'test':
-                response = 'Дай Бог автомат по мат анализу'
-            elif data == 'test2':
-                response = 'Дай Бог автомат по линалу'
+            if data == 'basketball':
+                response = 'Введите id басктебольного поля: '
+            elif data == 'football':
+                response = 'Введите id футбольного поля: '
+            elif data == 'volleyball':
+                response = 'Введите id волейбольного поля: '
+            elif data == 'tabletennis':
+                response = 'Введите id теннисного стола: '
+            elif data == 'tennis':
+                response = 'Введите id теннисного корта: '
+            elif data == 'minifootball':
+                response = 'Введите id поля для мини-футбола: '
             else:
                 response = 'неизвестный запрос'
 
@@ -30,6 +38,7 @@ def start_server():
     except KeyboardInterrupt:
         server.close()
         print('End working')
+
 
 if __name__ == '__main__':
     start_server()
